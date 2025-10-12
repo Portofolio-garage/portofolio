@@ -1,30 +1,44 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import Hero from './components/Hero.vue'
+import Education from './components/Education.vue'
+import { onMounted } from 'vue'
+
+// small global observer to reveal sections with the .reveal class
+onMounted(() => {
+  const els = Array.from(document.querySelectorAll('.reveal'))
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(e => e.classList.add('is-visible'))
+    return
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible')
+        io.unobserve(entry.target)
+      }
+    })
+  }, { threshold: 0.15 })
+  els.forEach(e => io.observe(e))
+})
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div id="app">
+    <Hero />
+    <Education />
+
+    <!-- Future sections: Work Experience, Projects, Skills, Contact -->
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* keep App-level centering minimal; components handle their own layout */
+#app {
+  padding: 1rem 2rem;
+  text-align: left;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+@media (min-width: 700px) {
+  #app { padding: 2rem 3rem }
 }
 </style>
