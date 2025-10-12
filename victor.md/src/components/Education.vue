@@ -22,12 +22,12 @@
 </script>
 
 <style scoped>
-.education { padding: 2.4rem 0; }
-.education h2 { font-size: 1.6rem; margin-bottom: 1rem; border-bottom: 2px solid rgba(255,255,255,0.06); padding-bottom: 0.6rem }
-.edu-list { display: grid; gap: 1.1rem }
-.edu-item { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding: 1rem; border-radius: 10px }
-.edu-item h3 { margin: 0 0 0.2rem }
-.muted { color: #9aa6b2; margin: 0 0 0.4rem }
+.education { padding: 0.8rem 0 }
+.education h2 { font-size: 1.25rem; margin-bottom: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 0.4rem }
+.edu-list { display: grid; gap: 0.6rem }
+.edu-item { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding: 0.7rem; border-radius: 8px }
+.edu-item h3 { margin: 0 0 0.15rem }
+.muted { color: rgba(255,255,255,0.6); margin: 0 0 0.2rem }
 
 @media (min-width: 900px) {
   .edu-list { grid-template-columns: 1fr 1fr }
