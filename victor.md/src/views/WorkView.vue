@@ -1,7 +1,11 @@
 <template>
   <main class="container">
     <h1>Work</h1>
-    <p>Work timeline will go here.</p>
+    <div class="section-shell">
+      <div class="tile">
+        <p>Work timeline will go here.</p>
+      </div>
+    </div>
   </main>
 </template>
 

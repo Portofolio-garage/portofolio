@@ -1,7 +1,8 @@
 <template>
   <section class="hero reveal">
     <div class="hero-inner container">
-      <div class="hero-text">
+      <div class="hero-blob" aria-hidden="true"></div>
+  <div class="hero-text">
   <p class="greeting">Hello, I'm</p>
   <h1 class="name">Victor-Stefan Florescu</h1>
         <p class="role">Computer Science & Engineering Student</p>
@@ -36,11 +37,11 @@ const base = import.meta.env.BASE_URL || '/'
 .name { margin: 0.2rem 0 0.6rem; font-size: 5rem; letter-spacing: -0.02em; color: var(--fg); font-family: var(--serif-font); font-weight:600 }
 .role { margin: 0 0 0.6rem; color: var(--muted); font-weight: 600 }
 .desc { margin: 0; color: var(--muted); max-width: 60ch }
-.hero-photo { width: 160px; flex:0 0 160px }
-.hero-photo img { width:100%; height:100%; object-fit:cover; border-radius:14px; border: 1px solid rgba(255,255,255,0.04); box-shadow: 0 10px 30px rgba(0,0,0,0.6) }
+.hero-photo { width: 220px; flex:0 0 220px; margin-left: -24px }
+.hero-photo img { width:100%; height:100%; object-fit:cover; border-radius:14px; border: 1px solid rgba(255,255,255,0.04); box-shadow: 0 12px 40px rgba(0,0,0,0.6) }
 .cv-preview { margin-top:1rem }
-.cv-card { display:inline-grid; grid-auto-flow:row; gap:4px; padding:0.7rem 1rem; background:linear-gradient(135deg,var(--accent) 0%, #4755ff 100%); color:white; border-radius:10px; text-decoration:none; box-shadow: 0 8px 24px rgba(71,85,255,0.12); transition: transform .18s ease, box-shadow .18s }
-.cv-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(71,85,255,0.18) }
+.cv-card { display:inline-grid; grid-auto-flow:row; gap:4px; padding:0.7rem 1rem; background:linear-gradient(135deg,var(--accent) 0%, var(--accent-2) 100%); color:white; border-radius:10px; text-decoration:none; box-shadow: 0 10px 36px rgba(224,138,90,0.10); transition: transform .18s ease, box-shadow .18s }
+.cv-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(224,138,90,0.12) }
 .cv-title { font-weight:700 }
 .cv-sub { font-size:0.82rem; opacity:0.95 }
 

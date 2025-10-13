@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+import { onMounted, computed } from 'vue'
+import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
+
+const route = useRoute()
+const router = useRouter()
+const isHome = computed(() => route.path === '/')
 
 // small global observer to reveal sections with the .reveal class
 onMounted(() => {
@@ -25,7 +29,9 @@ onMounted(() => {
   <div id="app">
     <header class="topnav">
       <div class="container topnav-row">
-        <div class="brand">Victor</div>
+        <div class="left-slot">
+          <button v-if="!isHome" class="back-btn" @click="router.back()">← Back</button>
+        </div>
         <nav class="links">
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/education">Education</RouterLink>
@@ -42,8 +48,8 @@ onMounted(() => {
 </template>
 
 <style scoped>
-#app { padding-top: 78px }
-.topnav { padding: 6px 0 }
-.links a { color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 8px }
+#app { padding-top: 60px }
+.topnav { padding: 2px 0 }
+.links a { color: var(--muted); text-decoration: none; padding: 8px 12px; border-radius: 8px; font-size: 1.15rem }
 .links a:hover { color: var(--fg); background: rgba(255,255,255,0.02) }
 </style>

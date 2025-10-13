@@ -2,7 +2,7 @@
   <section class="work reveal">
     <h2>Work Experience</h2>
     <div class="work-list">
-  <RouterLink class="work-item tile" :to="{ path: '/work', hash: '#ta' }">
+  <RouterLink class="work-item tile orange-outline reveal delay-1" :to="{ path: '/work', hash: '#ta' }">
         <h3>Programming Teaching Assistant</h3>
         <p class="muted">Faculty of Automatic Control and Computers, UPB</p>
         <ul>
@@ -10,7 +10,7 @@
         </ul>
       </RouterLink>
 
-  <RouterLink class="work-item tile" :to="{ path: '/work', hash: '#hbfs' }">
+  <RouterLink class="work-item tile orange-outline reveal delay-2" :to="{ path: '/work', hash: '#hbfs' }">
         <h3>Member — HBFS Robotics Club</h3>
         <p class="muted">Worked on embedded systems, IoT and 3D modeling</p>
         <ul>
@@ -26,7 +26,7 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <style scoped>
-.work-list { display: grid; gap: 0.6rem }
-.work-item { padding: 0.7rem; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius: 8px }
+.work-list { display: grid; gap: 0.9rem }
+.work-item { padding: 1.1rem; min-height: 120px; background: transparent; border-radius: 12px; display:flex; flex-direction:column; justify-content:center; border:1px solid rgba(255,255,255,0.03); backdrop-filter: blur(8px) saturate(1.02); }
 .work-item h3 { margin: 0 0 0.15rem }
 </style>

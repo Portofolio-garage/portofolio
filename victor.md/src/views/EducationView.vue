@@ -60,15 +60,15 @@ import { reactive } from 'vue'
 
 const items = reactive([
       {
-    date: '2025 - Present',
+    date: '2024 - 2028 (on-going)',
     title: 'B.Sc. Computer Science & Engineering',
     short: 'University Politehnica of Bucharest — focused on systems, embedded and AI.',
     details: '',
     open: true,
     // entries are years; mapping per your choice B: group1->2025 S1, group2->2026 S2, group3->2027 S1
     entries: [
-      { year: '2027', semesters: [
-        { sem: 'S1', title: 'Year 3 - Semester 1', classes: [
+      { year: '2026', semesters: [
+        { sem: 'S1', title: 'Year 2 - Semester 1', classes: [
           'Linear Electronic Circuits',
           'Object-Oriented Programming',
           'Numerical Methods',
@@ -77,8 +77,8 @@ const items = reactive([
           'Analysis Techniques in Systems Engineering',
         ] },
       ]},
-      { year: '2026', semesters: [
-        { sem: 'S2', title: 'Year 2 - Semester 2', classes: [
+      { year: '2025', semesters: [
+        { sem: 'S2', title: 'Year 1 - Semester 2', classes: [
           'Special Mathematics (Complex Analysis)',
           'Physics',
           'Electrical Engineering',
@@ -106,10 +106,10 @@ const items = reactive([
     open: false,
     // highschool entries: list each year with sample classes (remove 2020)
     entries: [
-      { year: '2021', title: 'Year 2', classes: ['Advanced Math II', 'Intro to Programming'] },
-      { year: '2022', title: 'Year 3', classes: ['Algebra II', 'Algorithms basics'] },
-      { year: '2023', title: 'Year 4', classes: ['Math Olympiad prep', 'Projects'] },
-      { year: '2024', title: 'Graduation', classes: ['Final Project'] },
+      { year: '2021', title: 'Year 1', classes: ['Advanced Math II', 'Intro to Programming'] },
+      { year: '2022', title: 'Year 2', classes: ['Algebra II', 'Algorithms basics'] },
+      { year: '2023', title: 'Year 3', classes: ['Math Olympiad prep', 'Projects'] },
+      { year: '2024', title: 'Graduation Year', classes: ['Final Project'] },
     ],
   },
 ])
@@ -136,15 +136,38 @@ function isHighSchool(item: any) {
 // Flatten semesters in natural chronological order: entry list currently holds year groups,
 // but we want a sequence like: Year1 S1, Year1 S2, Year2 S1, ...
 function getFlatSemesters(item: any) {
+  // Build a 2D array of semesters grouped by numeric year ascending
+  const groups: any[][] = []
+  if (!item || !item.entries) return []
+  // extract entries that contain semesters and sort by their numeric year ascending
+  const semesterEntries = item.entries
+    .filter((e: any) => 'semesters' in e && Array.isArray(e.semesters))
+    .slice()
+    .sort((a: any, b: any) => {
+      const ay = Number(a.year || 0)
+      const by = Number(b.year || 0)
+      if (ay !== by) return ay - by
+      // same year — order by semester label if available (e.g. 'S1' before 'S2')
+      const semA = (a.semesters && a.semesters[0] && a.semesters[0].sem) || ''
+      const semB = (b.semesters && b.semesters[0] && b.semesters[0].sem) || ''
+  const idx = (s: string) => {
+        const m = String(s).match(/(\d+)/)
+        return m ? Number(m[1]) : 0
+      }
+      return idx(semA) - idx(semB)
+    })
+  for (const e of semesterEntries) {
+    groups.push(e.semesters.slice())
+  }
+  // Interleave by semester index: take semester 0 of each group in order, then semester 1, etc.
   const flat: any[] = []
-  // items.entries may already be ordered oldest->newest; preserve that order and push their semesters in order
-  for (const e of item.entries.slice()) {
-    if (e.semesters && Array.isArray(e.semesters)) {
-      for (const s of e.semesters) flat.push(s)
+  let maxLen = 0
+  for (const g of groups) if (g.length > maxLen) maxLen = g.length
+  for (let si = 0; si < maxLen; si++) {
+    for (const g of groups) {
+      if (g[si]) flat.push(g[si])
     }
   }
-  // Now ensure the sequence follows: S1, S2, S1, S2... by grouping pairs if needed.
-  // If semesters are already in correct order (S1 then S2), this will be a no-op.
   return flat
 }
 
@@ -174,7 +197,7 @@ section { padding: 2rem 0 }
 .short { margin:0.45rem 0 0; color:var(--muted) }
 .timeline-body { margin-top:1rem }
 
-.expanded-shell { background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.15)); padding:1.25rem; border-radius:12px; border:1px solid rgba(255,255,255,0.02) }
+.expanded-shell { background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.16)); padding:1.25rem; border-radius:12px; border:1px solid rgba(255,255,255,0.025); box-shadow: inset 0 1px 0 rgba(255,255,255,0.01) }
 .vertical-timeline { position:relative; display:flex; flex-direction:column; gap:1.25rem; padding-left:96px }
 
 /* vertical line centered where content now sits (years/dots removed) */

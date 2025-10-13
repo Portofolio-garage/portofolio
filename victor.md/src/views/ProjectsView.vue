@@ -1,9 +1,12 @@
 <template>
   <div>
-    <main class="container" style="padding-top:100px">
-      <button @click="$router.back()">← Back</button>
-      <h2>Projects</h2>
-      <p class="muted">Placeholder page — content to be added</p>
+    <main class="container">
+      <h1>Projects</h1>
+      <div class="section-shell">
+        <div class="tile">
+          <p class="muted">Placeholder page — content to be added</p>
+        </div>
+      </div>
     </main>
   </div>
 </template>

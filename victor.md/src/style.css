@@ -7,8 +7,9 @@
   font-weight: 400;
 
   /* Design tokens */
-  --accent: #4aa3ff; /* cool blue accent */
-  --accent-2: #2a85ff;
+  /* slightly toned-down warm orange */
+  --accent: #f28f5a; /* softer orange */
+  --accent-2: #ff5a2a; /* secondary warm tone */
   --bg: #070708; /* deeper dark gray */
   --card: #0f0f10;
   --fg: rgba(255,255,255,0.95);
@@ -18,17 +19,22 @@
   color: var(--fg);
   background-color: var(--bg);
 
-  /* make body background a dark canvas with subtle neutral glow */
-  background-image: radial-gradient(600px 400px at 75% 20%, rgba(60,80,100,0.04), transparent 20%), linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.85));
+  /* make body background a dark canvas with multiple warm patches that continue down the page */
+  background-image:
+    radial-gradient(700px 500px at 72% 18%, rgba(242,143,90,0.035), transparent 18%),
+    radial-gradient(500px 360px at 24% 38%, rgba(255,90,40,0.02), transparent 18%),
+    radial-gradient(520px 420px at 18% 68%, rgba(242,120,70,0.02), transparent 16%),
+    radial-gradient(640px 480px at 78% 78%, rgba(255,80,30,0.025), transparent 22%),
+    linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.92));
 
-
-/* Load Google Fonts (Playfair Display + Inter) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap');
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Load Google Fonts (Playfair Display + Inter) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap');
 
 a {
   font-weight: 500;
@@ -44,6 +50,31 @@ body {
   min-width: 320px;
   min-height: 100vh;
   /* no top padding here; nav is fixed */
+}
+
+:root {
+  /* duplicate tokens for compatibility; fine to keep but defined below as well */
+  --ui-font: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --serif-font: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --accent: #e08a5a; /* toned-down orange */
+  --accent-2: #ff7244;
+  --bg: #070708;
+  --card: #0f0f10;
+  --fg: rgba(255,255,255,0.95);
+  --muted: rgba(255,255,255,0.65);
+
+  font-family: var(--ui-font);
+  color-scheme: dark;
+  color: var(--fg);
+  background-color: var(--bg);
+
+  background-image:
+    radial-gradient(700px 500px at 72% 14%, rgba(224,138,90,0.06), transparent 18%),
+    radial-gradient(520px 420px at 24% 36%, rgba(255,90,40,0.03), transparent 18%),
+    radial-gradient(560px 460px at 18% 68%, rgba(242,120,70,0.03), transparent 16%),
+    radial-gradient(640px 520px at 78% 78%, rgba(255,80,30,0.04), transparent 22%),
+    radial-gradient(480px 360px at 14% 140%, rgba(242,100,60,0.03), transparent 20%),
+    linear-gradient(180deg, rgba(0,0,0,0.62), rgba(0,0,0,0.92));
 }
 
 h1 {
@@ -67,55 +98,71 @@ button {
 button:hover {
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+:root {
+  --ui-font: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --serif-font: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --accent: #e08a5a; /* toned-down orange */
+  --accent-2: #ff7244;
+  --bg: #070708;
+  --card: #0f0f10;
+  --fg: rgba(255,255,255,0.95);
+  --muted: rgba(255,255,255,0.65);
+
+  font-family: var(--ui-font);
+  color-scheme: dark;
+  color: var(--fg);
+  background-color: var(--bg);
+
+  background-image:
+    radial-gradient(700px 500px at 72% 14%, rgba(224,138,90,0.06), transparent 18%),
+    radial-gradient(520px 420px at 24% 36%, rgba(255,90,40,0.03), transparent 18%),
+    radial-gradient(560px 460px at 18% 68%, rgba(242,120,70,0.03), transparent 16%),
+    radial-gradient(640px 520px at 78% 78%, rgba(255,80,30,0.04), transparent 22%),
+    radial-gradient(480px 360px at 14% 140%, rgba(242,100,60,0.03), transparent 20%),
+    linear-gradient(180deg, rgba(0,0,0,0.62), rgba(0,0,0,0.92));
 }
-
-.card {
-  padding: 2em;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 1.2rem 1.6rem;
-  text-align: left;
-}
-
-/* Modern nav */
-.topnav { position:fixed; left:0; right:0; top:0; z-index:60; background: rgba(255,255,255,0.02); backdrop-filter: blur(6px); }
-.topnav .container { display:flex; align-items:center; justify-content:space-between; padding:10px 0 }
-.topnav .brand { font-weight:700 }
-.topnav .links { display:flex; gap:18px }
-.topnav .links a { color:var(--muted); padding:6px 10px; border-radius:8px; text-decoration:none; cursor:pointer; transition: background .18s, color .15s }
-.topnav .links a:hover { color:var(--fg); background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)) }
-.topnav .links a.active { color: var(--accent); background: linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01)); box-shadow: inset 0 -3px 0 var(--accent) }
-
-/* Compact header layout */
-
-.topnav-row { display:flex; align-items:center; justify-content:space-between }
-.brand { font-weight:700; color:var(--fg); padding:0.15rem 0 }
-.links { display:flex; gap:0.6rem; align-items:center }
-.links a { padding:0.45rem 0.6rem; font-weight:600 }
-
-/* make the nav slightly shorter */
 .topnav { padding: 6px 0 }
 
 /* compact cards for sections */
 .card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding: 1rem; border-radius: 12px }
 
+  /* Header layout tweaks for mirrored nav on inner pages */
+  .topnav-row { display:flex; align-items:center; gap:1rem; min-height:64px }
+  .topnav-row .left-slot { flex:0 0 160px; display:flex; align-items:center }
+  .topnav-row .links { flex:1; display:flex; gap:1.2rem; justify-content:flex-start; align-items:center }
+
+  /* Make header back button visually match the nav links and sit at same baseline */
+  .topnav-row .left-slot .back-btn { background: transparent; border: none; color: var(--muted); padding: 8px 12px; font-size: 1.15rem; margin:0; display:inline-flex; align-items:center; height:48px }
+  .topnav-row .left-slot .back-btn:hover { color: var(--fg) }
+  .links a { display:inline-flex; align-items:center; height:48px }
 /* card shell style used for experience/project/education tiles */
-.tile {
-  border-radius: 16px; padding: 18px; background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(0,0,0,0.05));
-  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.03);
-}
+.tile { border-radius: 16px; padding: 22px; margin-bottom: 18px; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.06)); box-shadow: 0 10px 36px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.02); backdrop-filter: blur(8px) saturate(1.05); }
 
 /* gradient outline variant */
 .tile.gradient-outline { position:relative; overflow:hidden }
 .tile.gradient-outline:before { content:''; position:absolute; inset:-2px; background: linear-gradient(90deg, rgba(74,163,255,0.08), rgba(42,133,255,0.06)); filter:blur(18px); z-index:0 }
 .tile.gradient-outline > * { position:relative; z-index:1 }
+
+/* warm gradient outline variant */
+.tile.orange-outline { position:relative }
+.tile.orange-outline:before { content:''; position:absolute; inset:-2px; background: linear-gradient(90deg, rgba(224,138,90,0.055), rgba(255,90,40,0.04)); filter:blur(18px); z-index:0 }
+.tile.orange-outline > * { position:relative; z-index:1 }
+
+/* reveal animation (staggered variants) */
+.reveal { opacity: 0; transform: translateY(18px) scale(0.995); transition: opacity 540ms cubic-bezier(.2,.9,.2,1), transform 540ms cubic-bezier(.2,.9,.2,1); }
+.reveal.is-visible { opacity: 1; transform: none; }
+.reveal.delay-1 { transition-delay: 80ms }
+.reveal.delay-2 { transition-delay: 160ms }
+.reveal.delay-3 { transition-delay: 240ms }
+
+/* hero blob - warm orange blurred spot */
+.hero { position: relative; overflow: visible }
+.hero-blob { position:absolute; right:6%; top:8%; width:640px; height:520px; pointer-events:none; filter: blur(60px); mix-blend-mode:screen; opacity:0.62; z-index:0 }
+.hero-blob:before { content:''; position:absolute; inset:0; background: radial-gradient(closest-side, rgba(255,122,47,0.85), rgba(255,61,0,0.45) 40%, rgba(0,0,0,0) 70%); border-radius:50% }
+
+/* make cv-card match warm accent */
+.cv-card { display:inline-grid; grid-auto-flow:row; gap:4px; padding:0.7rem 1rem; background:linear-gradient(135deg,var(--accent) 0%, var(--accent-2) 100%); color:white; border-radius:10px; text-decoration:none; box-shadow: 0 10px 40px rgba(255,90,30,0.12); transition: transform .18s ease, box-shadow .18s }
+.cv-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(255,90,30,0.18) }
 
 /* tighter spacing overall */
 section { padding: 1.4rem 0 }
@@ -163,5 +210,13 @@ section { padding: 1rem 0 }
 
 /* section headings */
 h2 { font-family: var(--serif-font); font-weight:600; font-size:1.6rem; margin-bottom:0.6rem; color:var(--fg) }
+
+/* Shared back button used on full-page views */
+.back-btn { display:inline-block; margin: 0; background: transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted); padding:0.45rem 0.75rem; border-radius:8px }
+.back-btn:hover { color: var(--fg); border-color: rgba(255,255,255,0.08) }
+
+/* Section shell provides a subtle padded container for page content */
+.section-shell { margin-top: 0.6rem }
+.section-shell .tile { padding: 22px; border-radius: 12px }
 
 
