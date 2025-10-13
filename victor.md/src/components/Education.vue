@@ -2,22 +2,23 @@
   <section class="education reveal">
     <h2>Education</h2>
     <div class="edu-list">
-      <article class="edu-item">
+  <RouterLink class="edu-item tile" :to="{ path: '/education', hash: '#college' }">
         <h3>B.Sc. Computer Science & Engineering</h3>
         <p class="muted">University Politehnica of Bucharest — 2024 - Present</p>
         <p>Bucharest, Romania</p>
-      </article>
+      </RouterLink>
 
-      <article class="edu-item">
+  <RouterLink class="edu-item tile" :to="{ path: '/education', hash: '#highschool' }">
         <h3>High School Diploma, Mathematics & Computer Science</h3>
         <p class="muted">Cantemir Voda National College — 2020 - 2024</p>
         <p>Bucharest, Romania</p>
-      </article>
+      </RouterLink>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
 // static content for now; can be converted to props or data later
 </script>
 

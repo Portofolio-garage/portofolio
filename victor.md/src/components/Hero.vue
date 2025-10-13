@@ -2,8 +2,8 @@
   <section class="hero reveal">
     <div class="hero-inner container">
       <div class="hero-text">
-        <p class="greeting">Hello, I'm</p>
-        <h1 class="name">Victor-Stefan Florescu</h1>
+  <p class="greeting">Hello, I'm</p>
+  <h1 class="name">Victor-Stefan Florescu</h1>
         <p class="role">Computer Science & Engineering Student</p>
         <p class="desc">I build embedded systems, web apps with AI components, and robotics projects. This page is a scrollable CV — keep scrolling.</p>
 
@@ -33,7 +33,7 @@ const base = import.meta.env.BASE_URL || '/'
 .hero-inner { display:flex; gap:1.6rem; align-items:center; flex-direction:column-reverse }
 .hero-text { flex:1 }
 .greeting { margin: 0; opacity: 0.9; font-weight: 600; color: var(--accent) }
-.name { margin: 0.2rem 0 0.4rem; font-size: 2.4rem; letter-spacing: -0.02em; color: var(--fg); }
+.name { margin: 0.2rem 0 0.6rem; font-size: 5rem; letter-spacing: -0.02em; color: var(--fg); font-family: var(--serif-font); font-weight:600 }
 .role { margin: 0 0 0.6rem; color: var(--muted); font-weight: 600 }
 .desc { margin: 0; color: var(--muted); max-width: 60ch }
 .hero-photo { width: 160px; flex:0 0 160px }

@@ -1,20 +1,29 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* UI font and display serif for headings */
+  --ui-font: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --serif-font: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-family: var(--ui-font);
   line-height: 1.5;
   font-weight: 400;
 
   /* Design tokens */
-  --accent: #646cff;
-  --accent-2: #4755ff;
-  --bg: #0f0f10;
-  --card: #121212;
+  --accent: #4aa3ff; /* cool blue accent */
+  --accent-2: #2a85ff;
+  --bg: #070708; /* deeper dark gray */
+  --card: #0f0f10;
   --fg: rgba(255,255,255,0.95);
-  --muted: rgba(255,255,255,0.65);
+  --muted: rgba(255,255,255,0.6);
 
   color-scheme: light dark;
   color: var(--fg);
   background-color: var(--bg);
 
+  /* make body background a dark canvas with subtle neutral glow */
+  background-image: radial-gradient(600px 400px at 75% 20%, rgba(60,80,100,0.04), transparent 20%), linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.85));
+
+
+/* Load Google Fonts (Playfair Display + Inter) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap');
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -32,16 +41,16 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   /* no top padding here; nav is fixed */
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-family: var(--serif-font);
+  font-size: 4rem;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
 }
 
 button {
@@ -75,12 +84,16 @@ button:focus-visible {
 }
 
 /* Modern nav */
-.topnav { backdrop-filter: blur(6px); background: rgba(10,11,12,0.55); border-bottom: 1px solid rgba(255,255,255,0.03); position:fixed; left:0; right:0; top:0; z-index:60 }
-.topnav nav { display:flex; gap:1.1rem; padding:0.6rem 0 }
-.topnav a { color: var(--muted); text-decoration:none; padding:0.45rem 0.6rem; border-radius:6px }
-.topnav a:hover { color: var(--fg); background: rgba(255,255,255,0.02) }
+.topnav { position:fixed; left:0; right:0; top:0; z-index:60; background: rgba(255,255,255,0.02); backdrop-filter: blur(6px); }
+.topnav .container { display:flex; align-items:center; justify-content:space-between; padding:10px 0 }
+.topnav .brand { font-weight:700 }
+.topnav .links { display:flex; gap:18px }
+.topnav .links a { color:var(--muted); padding:6px 10px; border-radius:8px; text-decoration:none; cursor:pointer; transition: background .18s, color .15s }
+.topnav .links a:hover { color:var(--fg); background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)) }
+.topnav .links a.active { color: var(--accent); background: linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01)); box-shadow: inset 0 -3px 0 var(--accent) }
 
 /* Compact header layout */
+
 .topnav-row { display:flex; align-items:center; justify-content:space-between }
 .brand { font-weight:700; color:var(--fg); padding:0.15rem 0 }
 .links { display:flex; gap:0.6rem; align-items:center }
@@ -91,6 +104,18 @@ button:focus-visible {
 
 /* compact cards for sections */
 .card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding: 1rem; border-radius: 12px }
+
+/* card shell style used for experience/project/education tiles */
+.tile {
+  border-radius: 16px; padding: 18px; background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(0,0,0,0.05));
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* gradient outline variant */
+.tile.gradient-outline { position:relative; overflow:hidden }
+.tile.gradient-outline:before { content:''; position:absolute; inset:-2px; background: linear-gradient(90deg, rgba(74,163,255,0.08), rgba(42,133,255,0.06)); filter:blur(18px); z-index:0 }
+.tile.gradient-outline > * { position:relative; z-index:1 }
 
 /* tighter spacing overall */
 section { padding: 1.4rem 0 }
@@ -137,6 +162,6 @@ section { padding: 1rem 0 }
 }
 
 /* section headings */
-h2 { font-size:1.25rem; margin-bottom:0.6rem }
+h2 { font-family: var(--serif-font); font-weight:600; font-size:1.6rem; margin-bottom:0.6rem; color:var(--fg) }
 
 

@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import Hero from './components/Hero.vue'
-import Education from './components/Education.vue'
-import Work from './components/Work.vue'
-import Projects from './components/Projects.vue'
 import { onMounted } from 'vue'
+import { RouterLink, RouterView } from 'vue-router'
 
 // small global observer to reveal sections with the .reveal class
 onMounted(() => {
@@ -30,33 +27,23 @@ onMounted(() => {
       <div class="container topnav-row">
         <div class="brand">Victor</div>
         <nav class="links">
-          <a href="#hero">Home</a>
-          <a href="#education">Education</a>
-          <a href="#work">Work</a>
-          <a href="#projects">Projects</a>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/education">Education</RouterLink>
+          <RouterLink to="/work">Work</RouterLink>
+          <RouterLink to="/projects">Projects</RouterLink>
         </nav>
       </div>
     </header>
 
     <main class="container">
-      <section id="hero"><Hero /></section>
-      <section id="education"><Education /></section>
-      <section id="work"><Work /></section>
-      <section id="projects"><Projects /></section>
+      <RouterView />
     </main>
   </div>
 </template>
 
 <style scoped>
-/* keep App-level centering minimal; components handle their own layout */
-
-#app {
-  padding: 1.6rem 2rem 2rem 2rem;
-  padding-top: 88px; /* offset for fixed top nav */
-  text-align: left;
-}
-
-@media (min-width: 700px) {
-  #app { padding: 2rem 3rem }
-}
+#app { padding-top: 78px }
+.topnav { padding: 6px 0 }
+.links a { color: var(--muted); text-decoration: none; padding: 6px 10px; border-radius: 8px }
+.links a:hover { color: var(--fg); background: rgba(255,255,255,0.02) }
 </style>

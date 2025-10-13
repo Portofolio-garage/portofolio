@@ -2,22 +2,24 @@
   <section class="projects reveal">
     <h2>Selected Projects</h2>
     <div class="proj-list">
-      <article class="proj-item">
+  <RouterLink class="proj-item tile" :to="{ path: '/projects' }">
         <h3>BetterMaps — AI-Powered Route Planning System</h3>
         <p class="muted">Python, Vue.js, Google Maps APIs, Gemini AI</p>
         <p>Developed intelligent routing with personalized POIs and secure dashboard with Google OAuth2.</p>
-      </article>
+      </RouterLink>
 
-      <article class="proj-item">
+  <RouterLink class="proj-item tile" :to="{ path: '/projects' }">
         <h3>Smart Receipts — AI Expense Management</h3>
         <p class="muted">Python, PaddleOCR, Spring, Kafka, Flutter</p>
         <p>Automated receipt scanning and LLM-based data extraction with real-time pipelines.</p>
-      </article>
+      </RouterLink>
     </div>
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
+</script>
 
 <style scoped>
 .proj-list { display: grid; gap: 0.6rem }
