@@ -219,4 +219,46 @@ h2 { font-family: var(--serif-font); font-weight:600; font-size:1.6rem; margin-b
 .section-shell { margin-top: 0.6rem }
 .section-shell .tile { padding: 22px; border-radius: 12px }
 
+/* Responsive: collapse/stack header and reduce paddings on small screens */
+@media (max-width: 780px) {
+  .topnav-row { flex-direction: column; align-items: stretch; min-height: auto; padding: 8px 0 }
+  .topnav-row .left-slot { order: 0; flex: none; display:flex; justify-content:flex-start; padding-left: 0 }
+  .topnav-row .left-slot .back-btn { font-size: 1rem; height: 36px; padding: 6px 10px }
+  .topnav-row .links { order: 1; justify-content: center; gap: 0.9rem; flex-wrap: wrap }
+  .links a { font-size: 1rem; padding: 6px 8px }
+
+  .hero-inner { gap: 1rem }
+  .hero-photo { width: 160px; flex: 0 0 160px; margin-left: 0 }
+  .name { font-size: 2.2rem }
+  .desc { max-width: 100% }
+
+  .tile { padding: 14px }
+  .section-shell .tile { padding: 14px }
+  .timeline-item { padding: 12px }
+  .vertical-timeline { padding-left: 72px }
+  .vertical-timeline:before { left: 18px }
+  .vt-entry { padding: 10px }
+  .vt-content ul { padding-left: 0.9rem }
+}
+
+@media (max-width: 480px) {
+  .topnav-row { gap: 0.5rem }
+  .topnav-row .left-slot { padding-left: 0.4rem }
+  .topnav-row .links { gap: 0.6rem }
+  .links a { font-size: 0.98rem; padding: 6px 8px }
+
+  .hero-inner { flex-direction: column; align-items: flex-start }
+  .hero-photo { width: 120px; flex: 0 0 120px }
+  .name { font-size: 1.8rem }
+  h1 { font-size: 1.8rem }
+
+  .tile { padding: 12px }
+  .section-shell .tile { padding: 12px }
+  .timeline-item { padding: 10px }
+  .vertical-timeline { padding-left: 56px }
+  .vertical-timeline:before { left: 14px }
+  .vt-entry { padding: 8px }
+  .vt-content ul { padding-left: 0.8rem }
+}
+
 
