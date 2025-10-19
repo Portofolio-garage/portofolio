@@ -1,18 +1,13 @@
 <template>
   <div>
     <main class="container">
-      <h1>Projects</h1>
-      <div class="section-shell">
-        <div class="tile">
-          <p class="muted">Placeholder page — content to be added</p>
-        </div>
-      </div>
+      <Projects />
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
-// empty for now
+import Projects from '../components/Projects.vue'
 </script>
 
 <style scoped>

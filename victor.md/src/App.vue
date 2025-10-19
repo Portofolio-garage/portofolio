@@ -2,6 +2,10 @@
 import { onMounted, computed } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 
+function markNav(path: string) {
+  try { sessionStorage.setItem('navEntry', path) } catch (e) { /* ignore */ }
+}
+
 const route = useRoute()
 const router = useRouter()
 const isHome = computed(() => route.path === '/')
@@ -27,16 +31,30 @@ onMounted(() => {
 
 <template>
   <div id="app">
+    <!-- decorative background patches (purely visual, non-interactive) -->
+    <div class="bg-patches" aria-hidden="true">
+      <span class="bg-patch"></span>
+      <span class="bg-patch"></span>
+      <span class="bg-patch"></span>
+      <span class="bg-patch"></span>
+      <span class="bg-patch"></span>
+      <span class="bg-patch"></span>
+      <span class="bg-patch"></span>
+    </div>
     <header class="topnav">
       <div class="container topnav-row">
         <div class="left-slot">
           <button v-if="!isHome" class="back-btn" @click="router.back()">← Back</button>
         </div>
         <nav class="links">
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/education">Education</RouterLink>
-          <RouterLink to="/work">Work</RouterLink>
-          <RouterLink to="/projects">Projects</RouterLink>
+          <RouterLink to="/" @click="markNav('/')">Home</RouterLink>
+          <RouterLink to="/education" @click="markNav('/education')">Education</RouterLink>
+          <RouterLink to="/work" @click="markNav('/work')">Work</RouterLink>
+          <RouterLink to="/projects" @click="markNav('/projects')">Projects</RouterLink>
+          <RouterLink to="/competitions" @click="markNav('/competitions')">Competitions</RouterLink>
+          <!-- Navbar items temporarily hidden -->
+          <!-- <RouterLink to="/certifications" @click="markNav('/certifications')">Certifications</RouterLink> -->
+          <!-- <RouterLink to="/blog" @click="markNav('/blog')">Blog</RouterLink> -->
         </nav>
       </div>
     </header>
