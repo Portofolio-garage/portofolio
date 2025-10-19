@@ -15,7 +15,7 @@
             <div v-show="item.open" class="timeline-body">
               <div class="expanded-shell">
                 <div class="vertical-timeline">
-                  <template v-for="(entry, ei) in item.entries" :key="ei">
+                  <template v-for="entry in item.entries" :key="entry.title">
                     <div class="vt-entry">
                       <div class="vt-content">
                         <h4>{{ entry.title }}</h4>
