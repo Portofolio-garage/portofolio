@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-// Use Vite's base so links work when the app is served from /portofolio/
+// Use Vite's base so links work when the app is served from /portfolio/
 const base = import.meta.env.BASE_URL || '/'
 </script>
 
