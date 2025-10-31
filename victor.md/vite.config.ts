@@ -7,7 +7,7 @@ import vue from '@vitejs/plugin-vue'
 // NOTE: repository was renamed — update the default base below to match your
 // current GitHub repo name. Assumption: new repo name is 'portfolio'. If it's
 // different, either set the GHP_BASE env var during build or change this value.
-const base = process.env.GHP_BASE || '/portfolio/'
+const base = process.env.GHP_BASE || '/Portfolio/'
 
 // https://vite.dev/config/
 export default defineConfig({
