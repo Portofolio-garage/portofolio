@@ -1,10 +1,12 @@
 <template>
-  <main class="container">
-    <h1>Education timeline</h1>
-    <div class="timeline">
-      <div v-for="(item, idx) in items" :key="idx" class="tile timeline-item">
-        <!-- only allow toggle if the item is not highschool (we'll identify by title containing 'High School' or date range) -->
-        <div class="timeline-head" @click="(isHighSchool(item) ? null : toggle(idx))">
+  <section class="education reveal">
+    <div class="container">
+      <h2 class="section-heading">Education</h2>
+      <div class="section-shell more-defined">
+        <div class="timeline">
+          <div v-for="(item, idx) in items" :key="idx" class="tile timeline-item reveal" :class="{ 'delay-1': idx===0, 'delay-2': idx===1 }">
+            <!-- only allow toggle if the item is not highschool (we'll identify by title containing 'High School' or date range) -->
+            <div class="timeline-head" role="button" tabindex="0" @click="toggle(idx)" @keyup.enter="toggle(idx)">
           <div class="date">{{ item.date }}</div>
           <div class="head-content">
             <h3>{{ item.title }}</h3>
@@ -15,6 +17,7 @@
         <transition name="fade-slide">
           <div v-show="item.open" class="timeline-body">
             <div class="expanded-shell">
+              <p v-if="item.lead" class="lead">{{ item.lead }}</p>
               <div class="vertical-timeline">
                 <!-- Flatten and render semesters in order: Year1 S1, Year1 S2, Year2 S1, Year2 S2, ... -->
                 <template v-if="item.entries && item.entries.some(e => 'semesters' in e)">
@@ -48,9 +51,11 @@
             </div>
           </div>
         </transition>
+          </div>
+        </div>
       </div>
     </div>
-  </main>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -100,16 +105,36 @@ const items = reactive([
   },
   {
     date: '2020 - 2024',
-    title: 'High School Diploma, Math & CS',
-    short: 'Cantemir Voda National College — advanced math and computer science track.',
+    title: 'High School — Mathematics & Computer Science',
+    short: 'Advanced mathematics and computer science track (intensive).',
+    lead: 'Focused on core subjects across mathematics, physics, chemistry and computer science with intensive practical labs and programming.',
     details: '',
     open: false,
-    // highschool entries: list each year with sample classes (remove 2020)
     entries: [
-      { year: '2021', title: 'Year 1', classes: ['Advanced Math II', 'Intro to Programming'] },
-      { year: '2022', title: 'Year 2', classes: ['Algebra II', 'Algorithms basics'] },
-      { year: '2023', title: 'Year 3', classes: ['Math Olympiad prep', 'Projects'] },
-      { year: '2024', title: 'Graduation Year', classes: ['Final Project'] },
+      { year: '', title: 'Mathematics', classes: [
+        'Algebra & functions',
+        'Calculus fundamentals',
+        'Analytic & 3D geometry',
+        'Probability & statistics',
+      ] },
+      { year: '', title: 'Physics', classes: [
+        'Classical mechanics basics',
+        'Optics basics',
+        'Thermodynamics intro',
+        'Electromagnetism basics',
+      ] },
+      { year: '', title: 'Chemistry', classes: [
+        'General chemistry essentials',
+        'Chemical reactions & equilibria',
+        'Inorganic & organic basics',
+        'Intro to electrochemistry',
+      ] },
+      { year: '', title: 'Computer Science', classes: [
+        'Programming fundamentals (C++)',
+        'Data structures basics',
+        'Algorithms & complexity',
+        'Databases & SQL',
+      ] },
     ],
   },
 ])
@@ -124,14 +149,7 @@ function getNonSemesterEntries(item: any) {
   return item.entries.filter((e: any) => !('semesters' in e))
 }
 
-function isHighSchool(item: any) {
-  // simple heuristic: title contains 'High School' or date range includes 2020-2024
-  if (!item || !item.title) return false
-  const t = String(item.title).toLowerCase()
-  if (t.includes('high school')) return true
-  if (item.date && String(item.date).includes('2020')) return true
-  return false
-}
+// removed isHighSchool helper — all items are now toggleable
 
 // Flatten semesters in natural chronological order: entry list currently holds year groups,
 // but we want a sequence like: Year1 S1, Year1 S2, Year2 S1, ...
@@ -198,6 +216,7 @@ section { padding: 2rem 0 }
 .timeline-body { margin-top:1rem }
 
 .expanded-shell { background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.16)); padding:1.25rem; border-radius:12px; border:1px solid rgba(255,255,255,0.025); box-shadow: inset 0 1px 0 rgba(255,255,255,0.01) }
+.lead { margin: 0 0 1rem; color: var(--muted); line-height:1.45 }
 .vertical-timeline { position:relative; display:flex; flex-direction:column; gap:1.25rem; padding-left:96px }
 
 /* vertical line centered where content now sits (years/dots removed) */

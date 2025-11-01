@@ -4,8 +4,8 @@
       <h2 class="section-heading">Competitions</h2>
       <div class="section-shell more-defined">
         <div class="proj-list">
-          <div class="proj-item tile reveal">
-            <div class="timeline-head">
+          <div class="proj-item tile reveal" :class="{ 'delay-1': true }">
+            <div class="timeline-head" role="button" tabindex="0">
               <div class="head-content">
                 <h3>Hard & Soft 2025 — Robotics Engineering Challenge</h3>
                 <p class="muted">May 2025 — Team placement: 4th (international)</p>
@@ -97,11 +97,11 @@
 /* Expanded shell styling copied from Projects to match layout exactly */
 .expanded-shell { background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.16)); padding:1rem; border-radius:12px; border:1px solid rgba(255,255,255,0.025) }
 .vertical-timeline { position:relative; display:flex; flex-direction:column; gap:1rem; padding-left:36px }
-.vertical-timeline:before { content:''; position:absolute; left:12px; top:8px; bottom:8px; width:3px; background: linear-gradient(180deg, rgba(224,138,90,1), rgba(255,90,40,0.85)); }
+.vertical-timeline:before { content:''; position:absolute; left:12px; top:8px; bottom:8px; width:2px; background: linear-gradient(180deg, var(--accent), rgba(255,255,255,0.02)); }
 .vt-entry { display:flex; gap:1rem; align-items:flex-start; padding:0.6rem; border-radius:8px; background: rgba(0,0,0,0.06); position:relative }
 .vt-entry:before { content:none }
-.vt-content { flex:1; font-size: 0.95rem; color: var(--muted) }
-.vt-content h4 { margin:0 0 0.35rem; font-size: 1.02rem }
+.vt-content { flex:1 }
+.vt-content h4 { margin:0 0 0.35rem }
 .vt-content ul { margin:0; padding-left:1.05rem }
 .vt-content li { margin-bottom: 0.28rem }
 
