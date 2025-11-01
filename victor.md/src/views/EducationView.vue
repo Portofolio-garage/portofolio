@@ -106,7 +106,7 @@ const items = reactive([
   {
     date: '2020 - 2024',
     title: 'High School — Mathematics & Computer Science',
-    short: 'Advanced mathematics and computer science track (intensive).',
+    short: 'Cantemir Voda National College',
     lead: 'Focused on core subjects across mathematics, physics, chemistry and computer science with intensive practical labs and programming.',
     details: '',
     open: false,
